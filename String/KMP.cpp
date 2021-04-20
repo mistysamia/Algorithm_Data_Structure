@@ -28,25 +28,25 @@ ll tra[100006],tra1[100006];
 ll failure[N];
 string text,pattern;
 
+
+
 void build_failure()
 {
-    failure[0]=failure[1]=0;
-    for(ll i=2; i<=pattern.size(); i++)
+    ll j=0,i=1;
+    while(i<pattern.size())
     {
-        ll j=failure[i-1];
-        while(1)
+        if(pattern[i]==pattern[j])
         {
-            if(pattern[j]==pattern[i-1])
-            {
-                failure[i]=j+1;
-                break;
-            }
+            failure[i]=j+1;
+            j++;
+            i++;
+        }
+        else
+        {
             if(j==0)
-            {
-                failure[i]=0;
-                break;
-            }
-            j=failure[j];
+                i++;
+            else
+                j=failure[j-1];
         }
     }
 }
@@ -82,6 +82,7 @@ void clr()
 {
     text.clear();
     pattern.clear();
+    memset(failure, 0,sizeof failure);
 }
 
 int main()
