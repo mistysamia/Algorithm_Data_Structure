@@ -17,13 +17,14 @@ using namespace std;
 #define fast_cin ios_base::sync_with_stdio(false);cin.tie(NULL)
 #define BIG 1000000000
 #define INF 1000000000000005
-#define N 100000
+#define N 1000
 ll mod=10000007;
 
 
 //cout<<fixed<<setprecision(1)<<VALUE NAME<<endl;
 vector<ll>weight[N];
 ll dp[100006];
+ll indx;
 
 ll longest(ll i,ll n)
 {
@@ -40,57 +41,57 @@ ll longest(ll i,ll n)
     return dp[i]=child;
 }
 
-int main()
+void path(ll source,ll val)
 {
-    fast_cin;
-
-
-    ll lock=0,sum=0,co=0,ans=-BIG,a=0,b=0,c=0;
-    ll n,m,k,mx=-BIG,mn=BIG;
-    ll fir=0,sec=0;
-    cin>>n>>m;
-    memset(dp,-1,sizeof dp);
-    for(int i=0; i<m; i++)
+    if(val==0)
     {
-        cin>>a>>b;
-        weight[a].push_back(b);
-    }
-    for(int i=0;i<=n;i++)
-    {
-        if(dp[i]==-1)
-            ans=max(ans,longest(i,n));
+        for(int i=0; i<weight[source].size(); i++)
+            if(val==dp[weight[source][i]])
+                indx=min(indx,weight[source][i]);
+         return;
     }
 
-    cout<<ans<<endl;
+    for(int i=0; i<weight[source].size(); i++)
+    {
+        if(val==dp[weight[source][i]])
+            path(weight[source][i],val-1);
+    }
 
 }
-/*
 
-4 5
-1 2
-1 3
-3 2
-2 4
-3 4
-
-
-6 3
-2 3
-4 5
-5 6
-
-5 8
-5 3
-2 3
-2 4
-5 2
-5 1
-1 4
-4 3
-1 3
-
-
-
-*/
-
-
+void clr()
+{
+    memset(dp,-1,sizeof dp);
+    for(int i=0; i<N; i++)
+        weight[i].clear();
+    indx=BIG;
+}
+int main()
+{
+    ll cas=1;
+    while(1)
+    {
+        fast_cin;
+        ll lock=0,sum=0,co=0,ans=BIG,a=0,b=0,c=0;
+        ll n,m,k,mx=-BIG,mn=BIG,source,in=-1;
+        ll fir=0,sec=0;
+        cin>>n;
+        if(n==0)
+            break;
+        clr();
+        cin>>source;
+        while(1)
+        {
+            cin>>a>>b;
+            if(a+b==0)
+                break;
+            weight[a].push_back(b);
+        }
+        ans=longest(source,n);
+        in=ans-1;
+        path(source,in);
+        cout<<"Case "<<cas++<<": The longest path from "<<source;
+        cout<<" has length "<<ans<<", finishing at ";
+        cout<<indx<<"."<<endl<<endl;
+    }
+}
