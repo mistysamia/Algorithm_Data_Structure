@@ -25,14 +25,14 @@ ll mod=10000007;
 vector<ll>weight[N];
 ll dp[100006];
 
-ll shortest(ll i,ll n)
+ll longest(ll i,ll n)
 {
     if(dp[i]!=-1)
         return dp[i];
 
     ll child=-BIG;
     for(int j=0; j<weight[i].size(); j++)
-        child=max(child,shortest(weight[i][j],n)+1);
+        child=max(child,longest(weight[i][j],n)+1);
 
     if(child==-BIG)
         return dp[i]=0;
@@ -58,7 +58,7 @@ int main()
     for(int i=0;i<=n;i++)
     {
         if(dp[i]==-1)
-            ans=max(ans,shortest(i,n));
+            ans=max(ans,longest(i,n));
     }
 
     cout<<ans<<endl;
