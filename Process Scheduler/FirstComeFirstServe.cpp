@@ -65,7 +65,7 @@ int main()
         cin>>arrival[i];
         deq.push_back({{arrival[i],cpu[i]},i});
     }
-    sort(deq.begin(),deq.end(),sortbysec);
+    stable_sort(deq.begin(),deq.end(),sortbysec);
     while(!deq.empty())
     {
         pii time=deq.front();
