@@ -66,12 +66,13 @@ int main()
         deq.push_back({{arrival[i],cpu[i]},i});
     }
     sort(deq.begin(),deq.end(),sortbysec);
-
-    passedTime = deq[0].ff.ff;
     while(!deq.empty())
     {
         pii time=deq.front();
         deq.pop_front();
+        if(passedTime<=time.ff.ff)
+            passedTime=time.ff.ff;
+
         waitTime=abs(passedTime-time.ff.ff);
         turnTime=waitTime+time.ff.ss;
         avgWait+=waitTime;
