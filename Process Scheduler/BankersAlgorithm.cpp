@@ -32,7 +32,7 @@ int main()
 {
     fast_cin;
     map<ll, ll> finish;
-    ll lock = 0,n,m,in = 1;
+    ll lock = 0, n, m, in = 1;
     cout << "Enter the no. of processes: " << endl;
     cin >> n;
     cout << "Enter the no. of resources: " << endl;
@@ -75,6 +75,7 @@ int main()
             {
                 for (int j = 1; j <= m; j++)
                 {
+
                     if (need[i][j] > available[indx][j])
                     {
                         lock = 1;
@@ -85,23 +86,71 @@ int main()
                 {
                     for (int j = 1; j <= m; j++)
                         available[in][j] = allocation[i][j] + available[indx][j];
-                    
+
                     track.push_back(in++);
                     finish[i] = 1;
                     process.push_back(i);
+                    break;
                 }
             }
         }
     }
+
+    cout << "Allocation Matrix : " << endl;
+    for (int i = 1; i <= m; i++)
+        cout << "\tR" << i << "   ";
+    cout << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << "P" << i << ":     ";
+        for (int j = 1; j <= m; j++)
+            cout << allocation[i][j] << "\t";
+        cout << endl;
+    }
+
+    cout << "Maximum Matrix : " << endl;
+    for (int i = 1; i <= m; i++)
+        cout << "\tR" << i << "   ";
+    cout << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << "P" << i << ":     ";
+        for (int j = 1; j <= m; j++)
+            cout << maximum[i][j] << "\t";
+        cout << endl;
+    }
+
+    cout << "Need Matrix : " << endl;
+    for (int i = 1; i <= m; i++)
+        cout << "\tR" << i << "   ";
+    cout << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << "P" << i << ":     ";
+        for (int j = 1; j <= m; j++)
+            cout << need[i][j] << "\t";
+        cout << endl;
+    }
+
+    cout << "Available resources : " << endl;
+    for (int i = 1; i <= m; i++)
+        cout << "R" << i << "\t";
+    cout << endl;
+    for (int i = 1; i < in; i++)
+    {
+        for (int j = 1; j <= m; j++)
+            cout << available[i][j] << "\t";
+        cout << endl;
+    }
+
     if (process.size() != n)
         cout << "The system is currently not in safe state." << endl;
     else
     {
         cout << "The system is currently in safe state and < ";
         for (int i = 0; i < process.size(); i++)
-            cout <<"P"<< process[i] << " ";
-        
+            cout << "P" << process[i] << " ";
+
         cout << "> is the safe sequence." << endl;
     }
-
 }
