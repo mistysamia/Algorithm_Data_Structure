@@ -38,7 +38,6 @@ int main()
     ll FIFOPageFault = 0, OptimalPageFault = 0, LeastPageFault = 0;
     double FIFOFaultRate, OptimalFaultRate, LeastPageRate;
 
-    std::fill(firstIndx.begin(), firstIndx.end(), -1);
 
 
     /***********
