@@ -182,3 +182,11 @@ int main()
     cout << "Page Fault Rate: " <<round(LeastPageRate)<< "%" << endl;
     
 }
+
+
+/***************
+8
+22
+7 0 1 2 0 3 0 4 2 3 0 3 0 3 2 1 2 0 1 7 0 1
+3
+***************/
