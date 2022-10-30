@@ -1,6 +1,8 @@
 /////////////2 sorted linked list merged by ascending order
 
 
+
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -39,22 +41,23 @@ typedef struct node newNode;
 newNode *head1 = NULL, *tail1 = NULL, *head2 = NULL, *tail2 = NULL,
         *finalHead = NULL, *finalTail = NULL;
 
-void push1(ll item) {
+void append(ll value, newNode *&head, newNode *&tail) {
+
   newNode *current = new newNode();
-  current->data = item;
+  current->data = value;
   current->next = NULL;
 
-  if (head1 == NULL) {
-    head1 = current;
-    tail1 = current;
+  if (head == NULL) {
+    head = current;
+    tail = current;
   } else {
-    tail1->next = current;
-    tail1 = current;
+    tail->next = current;
+    tail = current;
   }
 }
-void print1(newNode *head) {
-  newNode *current = new newNode();
-  current = head1;
+
+void print(newNode *head) {
+  newNode *current = head;
   while (current != NULL) {
     cout << current->data << " ";
     current = current->next;
@@ -62,27 +65,54 @@ void print1(newNode *head) {
   cout << endl;
 }
 
-void push2(ll item) {
-  newNode *current = new newNode();
-  current->data = item;
-  current->next = NULL;
+void merged() {
+  newNode *current1, *current2;
+  current1 = head1;
+  current2 = head2;
+  while (current1 != NULL && current2 != NULL) {
 
-  if (head2 == NULL) {
-    head2 = current;
-    tail2 = current;
-  } else {
-    tail2->next = current;
-    tail2 = current;
+    if (current1->data < current2->data) {
+      if (finalHead == NULL) {
+        finalHead = current1;
+        finalTail = current1;
+      } else {
+        finalTail->next = current1;
+        finalTail = current1;
+      }
+      current1 = current1->next;
+    } else {
+      if (finalHead == NULL) {
+        finalHead = current2;
+        finalTail = current2;
+      } else {
+        finalTail->next = current2;
+        finalTail = current2;
+      }
+      current2 = current2->next;
+    }
   }
-}
-void print2(newNode *head) {
-  newNode *current = new newNode();
-  current = head2;
-  while (current != NULL) {
-    cout << current->data << " ";
-    current = current->next;
+
+  while (current1 != NULL) {
+    if (finalHead == NULL) {
+      finalHead = current1;
+      finalTail = current1;
+    } else {
+      finalTail->next = current1;
+      finalTail = current1;
+    }
+    current1 = current1->next;
   }
-  cout << endl;
+
+  while (current2 != NULL) {
+    if (finalHead == NULL) {
+      finalHead = current2;
+      finalTail = current2;
+    } else {
+      finalTail->next = current2;
+      finalTail = current2;
+    }
+    current2 = current2->next;
+  }
 }
 
 int main() {
@@ -97,80 +127,30 @@ int main() {
     ll lock = 0, sum = 0, co = 0, ans = 0, a = 0, b = 0, c = 0, d = 0;
     ll n, m, k, mx = -BIG, mn = BIG;
     ll fir = 0, sec = 0, x = 0, y = 0, point, in, temp;
+
     cin >> n;
     for (int i = 0; i < n; i++) {
       cin >> a;
-      push1(a);
+      append(a, head1, tail1);
+      // cout<<head1->data<<endl;
     }
-    // print1(head1);
 
     cin >> m;
     for (int i = 0; i < m; i++) {
       cin >> a;
-      push2(a);
+      append(a, head2, tail2);
     }
-    // print2(head2);
-
-    newNode *current1,*current2;
-    current1 = head1;
-    current2 = head2;
-    while (current1 != NULL && current2 != NULL) {
-
-      if (current1->data < current2->data) {
-
-        if (finalHead == NULL) {
-          finalHead = current1;
-          finalTail = current1;
-        } else {
-          finalTail->next = current1;
-          finalTail = current1;
-        }  
-        current1 = current1->next;
-      
-      } else {
-        if (finalHead == NULL) {
-          finalHead = current2;
-          finalTail = current2;
-        } else {
-          finalTail->next = current2;
-          finalTail = current2;
-        }
-        current2 = current2->next;    
-      }
-    }
-
-    while (current1 != NULL) {
-      if (finalHead == NULL) {
-        finalHead = current1;
-        finalTail = current1;
-      } else {
-        finalTail->next = current1;
-        finalTail = current1;
-      }
-      current1 = current1->next;
-    }
-    while (current2 != NULL) {
-      if (finalHead == NULL) {
-        finalHead = current2;
-        finalTail = current2;
-      } else {
-        finalTail->next = current2;
-        finalTail = current2;
-      }
-      current2 = current2->next;
-    }
-
-    newNode *current ;
-    current = finalHead;
-    while (current != NULL) {
-      cout << current->data << " ";
-      current = current->next;
-    }
-    cout << endl;
+    print(head1);
+    print(head2);
+    merged();
+    print(finalHead);
     // ll str[n+3];
     // ll len=s.length();
   }
 }
+
+
+
 /*
 
 Input:
