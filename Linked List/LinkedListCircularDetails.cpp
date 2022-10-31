@@ -47,7 +47,7 @@ void append(newNode *&head, newNode *&tail, ll prevValue, ll nextValue,
     tail = current;
   } else {
     newNode *recent = head, *temp;
-    while (1) {
+    while (recent != NULL) {
 
       if (recent->data == prevValue) {
         temp = recent->next;
@@ -87,7 +87,7 @@ void append(newNode *&head, newNode *&tail, ll prevValue, ll nextValue,
 void remove(newNode *&head, newNode *&tail, ll value) {
   newNode *current = head, *tempPrev = NULL, *tempNext = NULL;
 
-  while (1) {
+  while (current != NULL) {
     if (current->data == value) {
       if (current == head && current == tail) {
         head = NULL;
@@ -98,7 +98,7 @@ void remove(newNode *&head, newNode *&tail, ll value) {
         tempNext = current->next;
 
         tempPrev->next = tempNext;
-        tempNext->prev=tempPrev;
+        tempNext->prev = tempPrev;
         if (current == head) {
           head = tempNext;
         } else if (current == tail) {
@@ -113,17 +113,20 @@ void remove(newNode *&head, newNode *&tail, ll value) {
       break;
     }
   }
+  cout << "Invalid Input" << endl;
 }
 
 void print(newNode *head) {
   newNode *current = head;
-  while (1) {
+  while (current != NULL) {
     cout << current->data << " ";
     current = current->next;
-    if (current == head)
-      break;
+    if (current == head) {
+      cout << endl;
+      return;
+    }
   }
-  cout << endl;
+  cout << "Nothing to Print" << endl;
 }
 
 int main() {
@@ -138,6 +141,7 @@ int main() {
     ll lock = 0, sum = 0, co = 0, ans = 0, a = 0, b = 0, c = 0, d = 0;
     ll n, m, k, mx = -BIG, mn = BIG;
     ll fir = 0, sec = 0, x = 0, y = 0, point, in, temp, prev, next, val;
+    cout << "Choose an Option (1 Insert) , (2 Delete) , (3 Print)" << endl;
     cin >> n;
 
     if (n == 1) {
@@ -170,7 +174,7 @@ Input:
 -1 1 23
 1
 -1 1 90
-1 
+1
 -1 23 100
 1
 89 -1 189
@@ -190,8 +194,8 @@ Input:
 
 Output:
 100 23 90 1 34 33 89 189
-23 90 1 34 33 89 189 
-23 90 1 34 33 89 
+23 90 1 34 33 89 189
+23 90 1 34 33 89
 23 90 34 33 89
 90 34 33 89
 */
