@@ -38,6 +38,10 @@ newNode *head = NULL, *tail = NULL;
 
 void append(newNode *&head, newNode *&tail, ll prevValue, ll nextValue,
             ll value) {
+  if (prevValue > 0 && nextValue > 0) {
+    cout << "Wrong Input" << endl;
+    return;
+  }
   newNode *current = new newNode();
   current->data = value;
   current->prev = current;
@@ -117,7 +121,6 @@ void remove(newNode *&head, newNode *&tail, ll value) {
   cout << "Invalid Input" << endl;
 }
 
-
 void print(newNode *&head) {
   newNode *current = head;
   while (current != NULL) {
@@ -154,7 +157,7 @@ int main() {
       remove(head, tail, val);
     } else if (n == 3) {
       print(head);
-    } 
+    }
 
     // ll str[n+3];
     // ll len=s.length();
