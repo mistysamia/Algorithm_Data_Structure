@@ -121,6 +121,28 @@ void remove(newNode *&head, newNode *&tail, ll value) {
   cout << "Invalid Input" << endl;
 }
 
+void reverse(newNode *&head, newNode *&tail) {
+  newNode *current = head, *temp;
+  while (current != NULL) {
+    temp = current->next;
+    current->prev = current->next;
+    if (temp == head) {
+      tail = head;
+      head = current;
+      break;
+    }
+    current = temp;
+  }
+  current = tail, temp = head;
+  while (current != NULL) {
+    current->next = temp;
+    temp = current;
+    current = current->prev;
+    if (current == tail)
+      break;
+  }
+}
+
 void print(newNode *&head) {
   newNode *current = head;
   while (current != NULL) {
@@ -157,6 +179,8 @@ int main() {
       remove(head, tail, val);
     } else if (n == 3) {
       print(head);
+    } else {
+      reverse(head, tail);
     }
 
     // ll str[n+3];
@@ -168,7 +192,7 @@ int main() {
 Input:
 1000
 1
-1 1 1
+1 -1 1
 1
 1 -1 33
 1
@@ -184,23 +208,34 @@ Input:
 1
 89 -1 189
 3
+4
+3
+1
+189 -1 20
+3
+1
+100 -1 44
+3
 2
 100
 3
 2
-189
+44
 3
-2
-1
+4
 3
 2
 23
+4
 3
 
 Output:
 100 23 90 1 34 33 89 189
-23 90 1 34 33 89 189
-23 90 1 34 33 89
-23 90 34 33 89
-90 34 33 89
+189 89 33 34 1 90 23 100
+189 20 89 33 34 1 90 23 100  
+189 20 89 33 34 1 90 23 100 44 
+189 20 89 33 34 1 90 23 44 
+189 20 89 33 34 1 90 23
+23 90 1 34 33 89 20 189
+189 20 89 33 34 1 90
 */
