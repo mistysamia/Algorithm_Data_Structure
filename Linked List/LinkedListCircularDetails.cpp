@@ -30,7 +30,7 @@ ll mod = 1e9 + 7;
 ll tra[100006], tra1[100006];
 
 struct node {
-  ll data;
+  ll data, flag;
   struct node *next, *prev;
 };
 typedef struct node newNode;
@@ -42,6 +42,7 @@ void append(newNode *&head, newNode *&tail, ll prevValue, ll nextValue,
   current->data = value;
   current->prev = current;
   current->next = current;
+  current->flag = 0;
   if (head == NULL) {
     head = current;
     tail = current;
@@ -116,7 +117,8 @@ void remove(newNode *&head, newNode *&tail, ll value) {
   cout << "Invalid Input" << endl;
 }
 
-void print(newNode *head) {
+
+void print(newNode *&head) {
   newNode *current = head;
   while (current != NULL) {
     cout << current->data << " ";
@@ -152,7 +154,7 @@ int main() {
       remove(head, tail, val);
     } else if (n == 3) {
       print(head);
-    }
+    } 
 
     // ll str[n+3];
     // ll len=s.length();
