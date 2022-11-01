@@ -83,7 +83,7 @@ void append(newNode *&head, newNode *&tail, ll prevValue, ll nextValue,
       recent = recent->next;
       if (recent == head) {
         cout << "Wrong Input" << endl;
-        break;
+       return;
       }
     }
   }
@@ -115,7 +115,7 @@ void remove(newNode *&head, newNode *&tail, ll value) {
     current = current->next;
     if (current == head) {
       cout << "Invalid Input" << endl;
-      break;
+      return;
     }
   }
   cout << "Invalid Input" << endl;
@@ -138,9 +138,12 @@ void reverse(newNode *&head, newNode *&tail) {
     current->next = temp;
     temp = current;
     current = current->prev;
-    if (current == tail)
-      break;
+    if (current == tail){
+      return;
+    }
   }
+
+  cout<<"Nothing to reverse"<<endl;
 }
 
 void print(newNode *&head) {
