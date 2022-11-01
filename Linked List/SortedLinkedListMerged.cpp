@@ -1,4 +1,4 @@
-/////////////2 sorted linked list merged by ascending order
+/////////////Hacker Rank - >  Merge two sorted linked lists
 
 
 
