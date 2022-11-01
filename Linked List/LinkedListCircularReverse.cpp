@@ -18,21 +18,27 @@ struct node {
 typedef struct node newNode;
 newNode *head = NULL, *tail = NULL;
 
-void reverse(newNode *&head,newNode *&tail) {
-
-  newNode *current = head, *next = NULL, *prev = NULL;
-
+void reverse(newNode *&head, newNode *&tail) {
+  newNode *current = head, *temp;
   while (current != NULL) {
-    next=current->next;
-    current->next=current->prev;
-    current=next;
-
-    if(current==head){
-      head=current->prev;
-      tail=current;
-      current=head;
-      return ;
+    temp = current->next;
+    current->prev = current->next;
+    if (temp == head) {
+      tail = head;
+      head = current;
+      break;
+    }
+    current = temp;
+  }
+  current = tail, temp = head;
+  while (current != NULL) {
+    current->next = temp;
+    temp = current;
+    current = current->prev;
+    if (current == tail){
+      return;
     }
   }
+
   cout<<"Nothing to reverse"<<endl;
 }
