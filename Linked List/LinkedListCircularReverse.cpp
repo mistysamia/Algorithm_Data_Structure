@@ -1,11 +1,3 @@
-/***********************
-************************
-Only For one Directional 
-************************
-************************/
-
-
-
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
