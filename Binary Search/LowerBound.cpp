@@ -32,7 +32,7 @@ ll tra[100006], tra1[100006];
 ///lower Bound : সহজ কথায় সবথেকে বামের যে ইনডেক্সে  key এর সমান বা বড় কোনো সংখ্যা আছে সেই position ই হলো লোয়ার বাউন্ড।
 
 
-ll binarySearch(deque<ll> deq, ll key) {
+ll lowerBound(deque<ll> deq, ll key) {
 
   ll left = 0, right = deq.size() - 1, mid,index=-1;
 
@@ -70,7 +70,7 @@ int main() {
     }
    // sort(deq.begin(), deq.end());
     cin >> key;
-    ans = binarySearch(deq, key);
+    ans = lowerBound(deq, key);
 
     cout << "Output" << endl;
     cout << ans << endl;
