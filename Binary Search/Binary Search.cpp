@@ -65,7 +65,7 @@ int main() {
       cin >> a;
       deq.push_back(a);
     }
-    sort(deq.begin(), deq.end());
+   // sort(deq.begin(), deq.end());
     cin >> key;
     ans = binarySearch(deq, key);
 
@@ -80,16 +80,16 @@ int main() {
 Input:
 555
 8
-3 67 2 4 6 8 2 8
+2 2 3 4 6 8 8 67
 8
 8
-3 67 2 4 6 8 2 8
+2 2 3 4 6 8 8 67
 5
 8
-3 67 2 4 6 8 2 8
+2 2 3 4 6 8 8 67
 2
 8
-3 67 2 4 6 8 2 8
+2 2 3 4 6 8 8 67
 67
 
 Output:
