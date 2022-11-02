@@ -94,6 +94,22 @@ void search(ll value) {
   cout << "Data Not Found" << endl;
 }
 
+void reverse(newNode *&head, newNode *&tail) {
+  newNode *current = head, *temp = NULL, *newNext = NULL;
+  tail=head;
+  while (current != NULL) {
+    temp = current->next;
+    current->next = newNext;
+    newNext = current;
+    if(temp==NULL){
+        head=current;
+        return;
+    }
+    current = temp;
+  }
+  cout<<"Nothing to reverse"<<endl;
+}
+
 int main() {
   fast_cin;
   ll t, cas = 1;
@@ -122,6 +138,8 @@ int main() {
     {
       cin >> m;
       search(m);
+    }else{
+        reverse(head,tail);
     }
 
     // ll str[n+3];
