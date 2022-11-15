@@ -28,9 +28,7 @@ ll mod = 1e9 + 7;
 
 ll tra[100006], tra1[100006];
 
-/// searching from array the lower bound, return position of lower bound
-/// lower Bound : সহজ কথায় সবথেকে বামের যে ইনডেক্সে  key এর সমান বা বড় কোনো
-/// সংখ্যা আছে সেই position ই হলো লোয়ার বাউন্ড।
+/// আপার বাউন্ড: সবথেকে ডানের যে ইনডেক্সে X এর বড় কোনো সংখ্যা আছে সেই ইনডেক্সটাই হলো আপার বাউন্ড।
 
 ll upperBound(deque<ll> deq, ll key) {
 
@@ -74,7 +72,6 @@ int main() {
 
     cout << "Output" << endl;
     cout << ans << endl;
-    cout << "dd " << endl;
   
     // ll str[n+3];
     // ll len=s.length();
